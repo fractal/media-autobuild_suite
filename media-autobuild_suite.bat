@@ -1586,7 +1586,7 @@ if not exist %instdir%\msys64\usr\bin\make.exe (
         echo.sleep ^3
         echo.exit
     )>%build%\pacman.sh
-    call :runBash pacman.log /build/pacman.sh
+    call :runBash pacman.log c/media-autobuild_suite/build/pacman.sh
     del %build%\pacman.sh
 )
 
@@ -1844,7 +1844,7 @@ if "%1"=="32" (
     echo.sleep 3
     echo.exit
 )>%build%\mingw.sh
-call :runBash mingw%1.log /build/mingw.sh
+call :runBash mingw%1.log c/media-autobuild_suite/build/mingw.sh
 
 if not exist %instdir%\msys64\mingw%1\bin\gcc.exe (
     echo -------------------------------------------------------------------------------
