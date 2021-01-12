@@ -1654,7 +1654,7 @@ if exist %instdir%\msys64\etc\profile.pacnew ^
     move /y %instdir%\msys64\etc\profile.pacnew %instdir%\msys64\etc\profile
 findstr /C:"profile2.local" %instdir%\msys64\etc\profile.d\Zab-suite.sh >nul 2>&1 || (
     echo.if [[ -z "$MSYSTEM" ^|^| "$MSYSTEM" = MINGW64 ]]; then
-    echo.   source /c/media-autobuild_suite/local64/etc/profile2.local
+    echo.   source /local64/etc/profile2.local
     echo.elif [[ -z "$MSYSTEM" ^|^| "$MSYSTEM" = MINGW32 ]]; then
     echo.   source /local32/etc/profile2.local
     echo.fi
@@ -1785,7 +1785,7 @@ goto :EOF
     echo.GIT_GUI_LIB_DIR=`cygpath -w /usr/share/git-gui/lib`
     echo.export LANG PATH PS1 HOME GIT_GUI_LIB_DIR
     echo.stty susp undef
-    echo.cd /trunk
+    echo.cd trunk/
     echo.test -f "$LOCALDESTDIR/etc/custom_profile" ^&^& source "$LOCALDESTDIR/etc/custom_profile"
 )>%instdir%\local%1\etc\profile2.local
 %instdir%\msys64\usr\bin\dos2unix -q %instdir%\local%1\etc\profile2.local
