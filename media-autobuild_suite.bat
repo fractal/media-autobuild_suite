@@ -1629,7 +1629,7 @@ if %updateSuite%==y (
 )
 
 rem update
-call :runBash update.log /build/media-suite_update.sh --build32=%build32% --build64=%build64%
+call :runBash update.log /c/media-autobuild_suite/build/media-suite_update.sh --build32=%build32% --build64=%build64%
 
 if exist "%build%\update_core" (
     echo.-------------------------------------------------------------------------------
@@ -1654,7 +1654,7 @@ if exist %instdir%\msys64\etc\profile.pacnew ^
     move /y %instdir%\msys64\etc\profile.pacnew %instdir%\msys64\etc\profile
 findstr /C:"profile2.local" %instdir%\msys64\etc\profile.d\Zab-suite.sh >nul 2>&1 || (
     echo.if [[ -z "$MSYSTEM" ^|^| "$MSYSTEM" = MINGW64 ]]; then
-    echo.   source /local64/etc/profile2.local
+    echo.   source /c/media-autobuild_suite/local64/etc/profile2.local
     echo.elif [[ -z "$MSYSTEM" ^|^| "$MSYSTEM" = MINGW32 ]]; then
     echo.   source /local32/etc/profile2.local
     echo.fi
@@ -1695,7 +1695,7 @@ set compileArgs=--cpuCount=%cpuCount% --build32=%build32% --build64=%build64% ^
     set "instdir=%instdir%"
 )
 if %noMintty%==y (
-    call :runBash compile.log /build/media-suite_compile.sh %compileArgs%
+    call :runBash compile.log /c/media-autobuild_suite/build/media-suite_compile.sh %compileArgs%
 ) else (
     if exist %build%\compile.log del %build%\compile.log
     start "compile" /I /LOW %CD%\msys64\usr\bin\mintty.exe -i /msys2.ico -t "media-autobuild_suite" ^
