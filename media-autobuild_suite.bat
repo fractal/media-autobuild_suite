@@ -1654,9 +1654,9 @@ if exist %instdir%\msys64\etc\profile.pacnew ^
     move /y %instdir%\msys64\etc\profile.pacnew %instdir%\msys64\etc\profile
 findstr /C:"profile2.local" %instdir%\msys64\etc\profile.d\Zab-suite.sh >nul 2>&1 || (
     echo.if [[ -z "$MSYSTEM" ^|^| "$MSYSTEM" = MINGW64 ]]; then
-    echo.   source ~/local64/etc/profile2.local
+    echo.   source local64/etc/profile2.local
     echo.elif [[ -z "$MSYSTEM" ^|^| "$MSYSTEM" = MINGW32 ]]; then
-    echo.   source ~/local32/etc/profile2.local
+    echo.   source local32/etc/profile2.local
     echo.fi
 )>%instdir%\msys64\etc\profile.d\Zab-suite.sh
 
