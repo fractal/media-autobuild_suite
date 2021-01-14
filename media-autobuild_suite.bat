@@ -1466,7 +1466,7 @@ if not exist %instdir%\mintty.lnk (
     echo -------------------------------------------------------------------------------
     echo.- make a first run
     echo -------------------------------------------------------------------------------
-    call :runBash firstrun.log exit
+    call :runBash firstrun.log /exit
 
     sed -i "s/#Color/Color/;s/^^IgnorePkg.*/#&/" %instdir%\msys64\etc\pacman.conf
 
@@ -1474,7 +1474,7 @@ if not exist %instdir%\mintty.lnk (
     echo.first update
     echo.-------------------------------------------------------------------------------
     title first msys2 update
-    call :runBash firstUpdate.log pacman --noconfirm -Sy --asdeps pacman-mirrors
+    call :runBash firstUpdate.log /pacman --noconfirm -Sy --asdeps pacman-mirrors
 
     echo.-------------------------------------------------------------------------------
     echo.critical updates
@@ -1485,7 +1485,7 @@ if not exist %instdir%\mintty.lnk (
     echo.second update
     echo.-------------------------------------------------------------------------------
     title second msys2 update
-    call :runBash secondUpdate.log pacman --noconfirm -Syu --asdeps
+    call :runBash secondUpdate.log /pacman --noconfirm -Syu --asdeps
 
     (
         echo.Set Shell = CreateObject("WScript.Shell"^)
@@ -1654,14 +1654,9 @@ if exist %instdir%\msys64\etc\profile.pacnew ^
     move /y %instdir%\msys64\etc\profile.pacnew %instdir%\msys64\etc\profile
 findstr /C:"profile2.local" %instdir%\msys64\etc\profile.d\Zab-suite.sh >nul 2>&1 || (
     echo.if [[ -z "$MSYSTEM" ^|^| "$MSYSTEM" = MINGW64 ]]; then
-    echo.   =====
-    echo.   pwd
-    echo.   =====
-    echo.   ls
-    echo.   =====
     echo.   source /c/media-autobuild_suite/local64/etc/profile2.local
     echo.elif [[ -z "$MSYSTEM" ^|^| "$MSYSTEM" = MINGW32 ]]; then
-    echo.   source /home/runneradmin/local32/etc/profile2.local
+    echo.   source /c/media-autobuild_suite/local32/etc/profile2.local
     echo.fi
 )>%instdir%\msys64\etc\profile.d\Zab-suite.sh
 
@@ -1736,7 +1731,7 @@ goto :EOF
     echo.source /etc/msystem
     echo.
     echo.# package build directory
-    echo.LOCALBUILDDIR=/build
+    echo.LOCALBUILDDIR=/c/media-autobuild_suite/build
     echo.# package installation prefix
     echo.LOCALDESTDIR=/local%1
     echo.export LOCALBUILDDIR LOCALDESTDIR
@@ -1790,7 +1785,7 @@ goto :EOF
     echo.GIT_GUI_LIB_DIR=`cygpath -w /usr/share/git-gui/lib`
     echo.export LANG PATH PS1 HOME GIT_GUI_LIB_DIR
     echo.stty susp undef
-    echo.cd trunk/
+    echo.cd /c/media-autobuild_suite/trunk/
     echo.test -f "$LOCALDESTDIR/etc/custom_profile" ^&^& source "$LOCALDESTDIR/etc/custom_profile"
 )>%instdir%\local%1\etc\profile2.local
 %instdir%\msys64\usr\bin\dos2unix -q %instdir%\local%1\etc\profile2.local
