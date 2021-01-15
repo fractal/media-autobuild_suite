@@ -1,8 +1,18 @@
-# media-autobuild_suite
+# Fractal Media Autobuild Suite
+
+This project is a fork of the popular FFmpeg Windows build helper tool `media-autobuild_suite`, forked from [`m-ab-s/media-autobuild_suite`](https://github.com/m-ab-s/media-autobuild_suite).
+
+This project was forked so that we could modify some paths in `media-autobuild_suite.bat` and `build/media-suite-compile.sh` to use hardcoded `C:\media-autobuild_suite\` as the prefix rather than the default relative paths, which do not resolve properly on many machines. This ensures that compilation will succeed consistently as long as this project is direclty in `C:\`.
+
+As a result, note that this version of `m-ab-s/media-autobuild_suite` will **only** work if the folder is at location `C:\media-autobuild_suite`. Once the folder is in the right path, follow the standard instructions from the the source project to build.
+
+======
+
+# Media Autobuild Suite README
 
 Before opening an issue, check if it's an issue directly from executing the suite. This isn't Doom9, reddit, stackoverflow or any other forum for general questions about the things being compiled. This script builds them, that's all.
 
-This source code is also mirrored in [GitLab](https://gitlab.com/RiCON/media-autobuild_suite).
+The initial source code that this fork originates from is also mirrored in [GitLab](https://gitlab.com/RiCON/media-autobuild_suite).
 
 Most git sources in the suite use GitHub, so if it's down, it's probably useless to run the suite at that time.
 
@@ -437,3 +447,7 @@ export CUDA_PATH=$(cygpath -sm "${_cuda_basepath}")/${_cuda_version}
 export PATH=$PATH:$(dirname "$(cygpath -u "\\${_msvc_basepath}\\${_msvc_version}\bin\Host\\${_msvc_hostarch}\\${_msvc_targetarch}\cl.exe")")
 export PATH=$PATH:$CUDA_PATH/bin
 ```
+
+
+
+
