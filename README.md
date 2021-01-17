@@ -1,12 +1,12 @@
 # Fractal Media Autobuild Suite
 
-This project is a fork of the popular FFmpeg Windows build helper tool `media-autobuild_suite`, forked from [`m-ab-s/media-autobuild_suite`](https://github.com/m-ab-s/media-autobuild_suite).
+This project is a fork of the popular FFmpeg Windows build helper tool [`media-autobuild_suite`](https://github.com/m-ab-s/media-autobuild_suite).
 
 This project was forked so that we could modify some paths in `media-autobuild_suite.bat` and `build/media-suite-compile.sh` to use hardcoded `C:\media-autobuild_suite\` as the prefix rather than the default relative paths, which do not resolve properly on many machines. This ensures that compilation will succeed consistently as long as this project is direclty in `C:\`.
 
 As a result, note that this version of `m-ab-s/media-autobuild_suite` will **only** work if the project folder is at location `C:\media-autobuild_suite`. Once the folder is in the right path, follow the standard instructions from the the source project to build.
 
-======
+---
 
 # Media Autobuild Suite
 
