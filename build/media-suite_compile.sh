@@ -2754,12 +2754,12 @@ run_builds() {
     new_updates=no
     new_updates_packages=""
     if [[ $build32 = yes ]]; then
-        source /local32/etc/profile2.local
+        source /c/media-autobuild_suite/local32/etc/profile2.local
         buildProcess
     fi
 
     if [[ $build64 = yes ]]; then
-        source /local64/etc/profile2.local
+        source /c/media-autobuild_suite/local64/etc/profile2.local
         buildProcess
     fi
 }

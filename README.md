@@ -4,13 +4,13 @@ This project is a fork of the popular FFmpeg Windows build helper tool `media-au
 
 This project was forked so that we could modify some paths in `media-autobuild_suite.bat` and `build/media-suite-compile.sh` to use hardcoded `C:\media-autobuild_suite\` as the prefix rather than the default relative paths, which do not resolve properly on many machines. This ensures that compilation will succeed consistently as long as this project is direclty in `C:\`.
 
-As a result, note that this version of `m-ab-s/media-autobuild_suite` will **only** work if the folder is at location `C:\media-autobuild_suite`. Once the folder is in the right path, follow the standard instructions from the the source project to build.
+As a result, note that this version of `m-ab-s/media-autobuild_suite` will **only** work if the project folder is at location `C:\media-autobuild_suite`. Once the folder is in the right path, follow the standard instructions from the the source project to build.
 
 ======
 
-# Media Autobuild Suite README
+# Media Autobuild Suite
 
-Before opening an issue, check if it's an issue directly from executing the suite. This isn't Doom9, reddit, stackoverflow or any other forum for general questions about the things being compiled. This script builds them, that's all.
+Before opening an issue, check if it's an issue directly from executing the suite. This isn't Doom9, Reddit, Stack Overflow or any other forum for general questions about the things being compiled. This script builds them, that's all.
 
 The initial source code that this fork originates from is also mirrored in [GitLab](https://gitlab.com/RiCON/media-autobuild_suite).
 
@@ -132,7 +132,7 @@ For information about the compiler environment see the wiki, there you also have
         - vapoursynth (R50)
         - vulkan (git)
 
-- other tools
+- Other tools
     - aom (git)
     - bmx (git)
     - curl (latest release) with WinSSL/LibreSSL/OpenSSL/mbedTLS/GnuTLS backend
@@ -218,7 +218,7 @@ For information about the compiler environment see the wiki, there you also have
 
 --------
 
-This tool is inspired by the very nice, linux cross-compiling tool from Roger Pack (rdp):
+This tool is inspired by the very nice, Linux cross-compiling tool from Roger Pack (rdp):
 <https://github.com/rdp/ffmpeg-windows-build-helpers>
 
 It is based on msys2 and tested under Windows 7, 8.1. and 10.
@@ -229,7 +229,7 @@ I use some jscript parts from nu774:
 
 Thanks to all of them!
 
-This Windows Batchscript setups a Mingw-w64/GCC compiler environment for building ffmpeg and other media tools under Windows.
+This Windows Batchscript setups a Mingw-w64/GCC compiler environment for building FFmpeg and other media tools under Windows.
 After building the environment it retrieves and compiles all tools. All tools get static compiled, no external .dlls needed (with some optional exceptions)
 
 How to use it:
@@ -244,6 +244,7 @@ How to use it:
 The Script writes a ini-file, so you only need to make these choices the first time what you want to build.
 
 The script doesn't build any registry key or system variables, when you don't need it any more you can delete the folder and your system will be clean.
+
 Building everything from scratch takes about ~3 hours depending on what is enabled.
 
 Check [forcing-recompilations](./doc/forcing-recompilations.md) to check how you can force a rebuild of all libs/binaries.

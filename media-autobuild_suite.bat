@@ -1785,7 +1785,7 @@ goto :EOF
     echo.GIT_GUI_LIB_DIR=`cygpath -w /usr/share/git-gui/lib`
     echo.export LANG PATH PS1 HOME GIT_GUI_LIB_DIR
     echo.stty susp undef
-    echo.cd /c/media-autobuild_suite/trunk/
+    echo.cd /trunk/
     echo.test -f "$LOCALDESTDIR/etc/custom_profile" ^&^& source "$LOCALDESTDIR/etc/custom_profile"
 )>%instdir%\local%1\etc\profile2.local
 %instdir%\msys64\usr\bin\dos2unix -q %instdir%\local%1\etc\profile2.local
