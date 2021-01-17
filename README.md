@@ -1,10 +1,8 @@
 # Fractal Media Autobuild Suite
 
-This project is a fork of the popular FFmpeg Windows build helper tool [`media-autobuild_suite`](https://github.com/m-ab-s/media-autobuild_suite).
+This project is a fork of the popular FFmpeg Windows build helper tool [`media-autobuild_suite`](https://github.com/m-ab-s/media-autobuild_suite). It was forked so that we could modify some paths in `media-autobuild_suite.bat` and `build/media-suite-compile.sh` to use hardcoded `C:\media-autobuild_suite\` as the prefix rather than the default relative paths, which do not resolve properly on many machines. This ensures that compilation will succeed consistently as long as this project is direclty in `C:\`.
 
-This project was forked so that we could modify some paths in `media-autobuild_suite.bat` and `build/media-suite-compile.sh` to use hardcoded `C:\media-autobuild_suite\` as the prefix rather than the default relative paths, which do not resolve properly on many machines. This ensures that compilation will succeed consistently as long as this project is direclty in `C:\`.
-
-As a result, note that this version of `m-ab-s/media-autobuild_suite` will **only** work if the project folder is at location `C:\media-autobuild_suite`. Once the folder is in the right path, follow the standard instructions from the the source project to build.
+As a result, note that this version of `m-ab-s/media-autobuild_suite` will **only** work if the project folder is at location `C:\media-autobuild_suite`. Once the folder is in the right path, follow the standard instructions from the source project to build.
 
 ---
 
@@ -230,20 +228,20 @@ I use some jscript parts from nu774:
 Thanks to all of them!
 
 This Windows Batchscript setups a Mingw-w64/GCC compiler environment for building FFmpeg and other media tools under Windows.
-After building the environment it retrieves and compiles all tools. All tools get static compiled, no external .dlls needed (with some optional exceptions)
+After building the environment it retrieves and compiles all tools. All tools get static compiled, no external .dlls needed (with some optional exceptions).
 
 How to use it:
 
-- Download the file, and extract it to your target folder or `git clone` the project. Compilers and tools will get installed there. Please make sure you use a folder without space characters. A good place might be: c:\mabs
+- Download the file, and extract it to your target folder or `git clone` the project. Compilers and tools will get installed there. Please make sure you use a folder without space characters.
 - Double click the media-autobuild_suite.bat file
 - Select if you want to compile for Windows 32-bit, 64-bit or both
 - Select if you want to compile non-free tools like "fdk aac"
 - Select the numbers of CPU (cores) you want to use
 - Wait a little bit, and hopefully after a while you'll find all your "*.exe" tools under local32\bin-(audio|global|video) or local64\bin-(audio|global|video)
 
-The Script writes a ini-file, so you only need to make these choices the first time what you want to build.
+The script writes a ini-file, so you only need to make these choices the first time what you want to build.
 
-The script doesn't build any registry key or system variables, when you don't need it any more you can delete the folder and your system will be clean.
+The script doesn't build any registry key or system variables. When you don't need it any more you can delete the folder and your system will be clean.
 
 Building everything from scratch takes about ~3 hours depending on what is enabled.
 
@@ -280,7 +278,7 @@ If there's some error during compilation follow these steps:
 
 `/build/media-suite_compile.sh`
 
-- This is the compiling script, it builds all the libs and tools we want, like ffmpeg; mplayer; etc. You can also inspect it and see how to compile your own tools. Normally you can copy the code and paste it in the mintty shell (except `make -j $cpuCount`, here you need to put your cpu count). You don't need to start this script, it's called by the batch script.
+- This is the compiling script, it builds all the libs and tools we want, like FFmpeg; mplayer; etc. You can also inspect it and see how to compile your own tools. Normally you can copy the code and paste it in the mintty shell (except `make -j $cpuCount`, here you need to put your cpu count). You don't need to start this script, it's called by the batch script.
 
 `/build/media-suite_update.sh`
 
@@ -315,7 +313,7 @@ Using custom patches is not officially supported, if you do use custom patches, 
 --------
 
 - To use a custom patch, within the build folder, create a script with the filename: `<repository's name>_extra.sh`.
-  - For ffmpeg, the folder name is ffmpeg-git, but the repository's name would be ffmpeg: `ffmpeg_extra.sh`.
+  - For FFmpeg, the folder name is ffmpeg-git, but the repository's name would be ffmpeg: `ffmpeg_extra.sh`.
   - For game-music-emu, the folder name is game-music-emu-0.6.2, but the repository's name would be game-music-emu: `game-music-emu_extra.sh`
   - Case-sensitivity applies, so for the folder name SVT-VP9-git (repo name SVT-VP9), the script filename would be: `SVT-VP9_extra.sh`
 
@@ -324,7 +322,7 @@ Using custom patches is not officially supported, if you do use custom patches, 
 To reference the cloned folder itself (`flac-git` `ffmpeg-git`) you can use the variable `${REPO_DIR}`.
 To reference the generated build folder, you would need to use `${REPO_DIR}/build-${bits}` to reference the build-64bit folder for 64 bit builds or build-32bit folder for 32 bit builds.
 
-- For some packages, the build folder may be slightly different (`build-shared-${bits}` for shared ffmpeg or `build-light-${bits}` for light build, etc. Try to compile at least once to see what folders are generated or look through the [compile script](build/media-suite_compile.sh))
+- For some packages, the build folder may be slightly different (`build-shared-${bits}` for shared ffmpeg or `build-light-${bits}` for light build, etc. Try to compile at least once to see what folders are generated or look through the [compile script](build/media-suite_compile.sh)).
 
 If you are building for both 32 and 64-bit, you can gate certain commands using `if [ "$bits"="64bits" ]; then <command>; fi` to only run them when building for 64 bits.\
 Be careful with certain packages due to their unique build process (x265, x264, and some others) so make sure to check the compile script
@@ -417,7 +415,7 @@ Beware as they may change in the future.
 For `--enable-cuda-nvcc` and `--enable-libnpp` to work, you need NVIDIA's [CUDA SDK](https://developer.nvidia.com/cuda-toolkit) installed with `CUDA_PATH` variable to be set system-wide (Usually set by default on CUDA SDK install) and VS2017 or better installed which should come with `vswhere.exe`.\
 If for some reason `CUDA_PATH` isn't set and/or `vswhere.exe` isn't installed, you need to export the `CUDA_PATH` variable path using the above mentioned user files and manually export the correct `PATH` including the absolute `cygpath` converted path to MSVC's `cl.exe`.
 
-### You do not need to do the following if you installed the SDK with the default locations etc and you have 8.3 short paths enabled or if you installed to a directory without any spaces
+### You do not need to do the following if you installed the SDK with the default locations and you have 8.3 short paths enabled or if you installed to a directory without any spaces
 
 If you did not understand any of the words above, assume the best and hope the compilation will succeed the first time, else try reinstalling the SDK and MSVC to a path without any spaces.
 
@@ -427,7 +425,7 @@ You will only need to be worried if running the following command in the mintty 
 cygpath -sm "$CUDA_PATH"
 ```
 
-If running the above command produces a path with a space, you will need to either disable cuda/npp stuff or reinstall your cuda sdk to a path without spaces.
+If running the above command produces a path with a space, you will need to either disable CUDA/npp stuff or reinstall your CUDA SDK to a path without spaces.
 
 ### Nothing should be disabled manually when installing CUDA SDK as disabling random things can cause the compilation to fail
 
@@ -448,7 +446,3 @@ export CUDA_PATH=$(cygpath -sm "${_cuda_basepath}")/${_cuda_version}
 export PATH=$PATH:$(dirname "$(cygpath -u "\\${_msvc_basepath}\\${_msvc_version}\bin\Host\\${_msvc_hostarch}\\${_msvc_targetarch}\cl.exe")")
 export PATH=$PATH:$CUDA_PATH/bin
 ```
-
-
-
-
